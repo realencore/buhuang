@@ -129,9 +129,9 @@ body {
 
 @media (max-width: 768px) {
   :root {
-    --font-size-s: 0.875rem;
-    --font-size-m: 1rem;
-    --font-size-l: 1.125rem;
+    --font-size-s: 1rem;
+    --font-size-m: 1.125rem;
+    --font-size-l: 1.25rem;
   }
 
   body {
