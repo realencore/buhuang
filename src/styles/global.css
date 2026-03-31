@@ -128,9 +128,15 @@ body {
 }
 
 @media (max-width: 768px) {
+  :root {
+    --font-size-s: 0.875rem;
+    --font-size-m: 1rem;
+    --font-size-l: 1.125rem;
+  }
+
   body {
-    padding-block: 4rem 1.35rem;
-    margin: 0 1.35rem;
+    padding-block: 3.5rem 1.5rem;
+    margin: 0 1.25rem;
   }
 }
 
@@ -160,8 +166,10 @@ body[data-width] {
   max-width: var(--content-width);
 }
 
-body[data-centered='true'] {
-  margin: 0 auto;
+@media (min-width: 769px) {
+  body[data-centered='true'] {
+    margin: 0 auto;
+  }
 }
 
 main {
