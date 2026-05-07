@@ -24,6 +24,10 @@ pnpm-debug.log*
 # IDE settings
 .idea/
 
+# Obsidian vault config & personal notes
+.obsidian/
+templates/
+
 # Netlify build output
 .netlify/
 
