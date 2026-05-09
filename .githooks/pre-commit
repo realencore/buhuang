@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# Obsidian and other GUI apps on macOS often run Git hooks with a minimal PATH.
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+
+if [ -f "$HOME/.zprofile" ]; then
+  . "$HOME/.zprofile"
+fi
+
+if ! command -v pnpm >/dev/null 2>&1; then
+  echo "Image sync failed: pnpm was not found in PATH."
+  echo "Current PATH: $PATH"
+  echo "Open a terminal and run: command -v pnpm"
+  exit 1
+fi
+
+echo "Running blog image sync..."
+pnpm images:sync
+status=$?
+
+if [ "$status" -ne 0 ]; then
+  echo "Image sync failed. Fix the issue above, then commit again."
+  exit "$status"
+fi
+
+git add src/content/posts .image-sync/manifest.json

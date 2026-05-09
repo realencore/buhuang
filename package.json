@@ -13,6 +13,8 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "images:sync": "tsx scripts/sync-images.ts",
+    "images:check": "tsx scripts/sync-images.ts --dry-run",
     "new": "tsx scripts/new-post.ts",
     "update-theme": "tsx scripts/update-theme.ts"
   },
