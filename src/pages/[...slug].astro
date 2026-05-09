@@ -2,11 +2,12 @@
 import { type CollectionEntry, getCollection } from 'astro:content'
 import PostLayout from '@/layouts/PostLayout.astro'
 import { render } from 'astro:content'
+import { isDraftPost } from '@/utils/draft'
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts')
   return posts
-    .filter((post) => !post.id.startsWith('_'))
+    .filter((post) => !isDraftPost(post))
     .map((post) => ({
       params: { slug: post.id },
       props: post

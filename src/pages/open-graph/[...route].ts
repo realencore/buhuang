@@ -1,10 +1,11 @@
 import { getCollection, type CollectionEntry } from 'astro:content'
 import { OGImageRoute } from 'astro-og-canvas'
 import { themeConfig } from '../../config'
+import { isDraftPost } from '@/utils/draft'
 
 export const prerender = true
 
-const collectionEntries = await getCollection('posts')
+const collectionEntries = (await getCollection('posts')).filter((post) => !isDraftPost(post))
 
 // Map the array of content collection entries to create an object.
 // Converts [{ id: 'post.md', data: { title: 'Example', pubDate: Date } }]

@@ -6,6 +6,7 @@ import MarkdownIt from 'markdown-it'
 import { parse as htmlParser } from 'node-html-parser'
 import sanitizeHtml from 'sanitize-html'
 import { themeConfig } from '@/config'
+import { isDraftPost } from '@/utils/draft'
 import path from 'node:path'
 
 const markdownParser = new MarkdownIt({
@@ -117,7 +118,7 @@ async function generateFeedInstance(context: APIContext) {
     }
   })
 
-  const posts = await getCollection('posts', ({ id }: CollectionEntry<'posts'>) => !id.startsWith('_'))
+  const posts = await getCollection('posts', (post: CollectionEntry<'posts'>) => !isDraftPost(post))
   const sortedPosts = posts.sort(
     (a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   )
